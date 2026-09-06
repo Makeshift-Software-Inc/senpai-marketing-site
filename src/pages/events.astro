@@ -1,0 +1,175 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Events',
+  description: 'Live floor maps at conventions. See where your crew is, how long the panel queue is, and where to eat.',
+};
+
+const errors = { name: '', email: '', eventName: '' };
+let success = false;
+
+if (Astro.request.method === 'POST') {
+  const data = await Astro.request.formData();
+  const name = data.get('name');
+  const email = data.get('email');
+  const eventName = data.get('eventName');
+
+  if (typeof name !== 'string' || !name.trim()) {
+    errors.name = 'Enter your name.';
+  }
+  if (typeof email !== 'string' || !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    errors.email = 'Enter an email address we can reply to.';
+  }
+  if (typeof eventName !== 'string' || !eventName.trim()) {
+    errors.eventName = 'Enter the event name.';
+  }
+
+  if (!errors.name && !errors.email && !errors.eventName) {
+    // TODO(founder): wire this to a real intake (email, CRM, or ticketing
+    // system). Nothing is persisted or forwarded yet — submissions are
+    // validated only.
+    success = true;
+  }
+}
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="events-page-heading" class="page-wrap">
+    <div class="panel page-hero">
+      <h1 id="events-page-heading" class="h1">Find your party. Everywhere you go.</h1>
+      <p class="body-large">
+        Live floor maps at conventions. See where your crew is, how long the panel queue is, and where to eat.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="panel">
+        <p class="caption1">Live floor maps show where your crew is.</p>
+      </div>
+      <div class="panel">
+        <p class="caption1">Multi-floor directions from panels to exhibit halls to food.</p>
+      </div>
+      <div class="panel">
+        <p class="caption1">Seat maps and queue times, updated live.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section aria-labelledby="organizer-heading" class="page-wrap">
+    <h2 id="organizer-heading" class="h2">Running an event?</h2>
+    <p class="body-large intro">
+      We map your venue, handle party formation, and give your vendors a checkout. Tell us about your event.
+    </p>
+
+    {
+      success ? (
+        <div class="panel success-panel" role="status">
+          <p class="caption1">Thanks — we've got your event details and will follow up by email.</p>
+        </div>
+      ) : (
+        <form method="POST" class="panel form-panel">
+          <div class="field">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              autocomplete="name"
+              aria-invalid={errors.name ? 'true' : undefined}
+              aria-describedby={errors.name ? 'name-error' : undefined}
+            />
+            {errors.name && (
+              <p class="field-error" id="name-error">
+                {errors.name}
+              </p>
+            )}
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              aria-invalid={errors.email ? 'true' : undefined}
+              aria-describedby={errors.email ? 'email-error' : undefined}
+            />
+            {errors.email && (
+              <p class="field-error" id="email-error">
+                {errors.email}
+              </p>
+            )}
+          </div>
+          <div class="field">
+            <label for="eventName">Event name</label>
+            <input
+              type="text"
+              id="eventName"
+              name="eventName"
+              autocomplete="off"
+              aria-invalid={errors.eventName ? 'true' : undefined}
+              aria-describedby={errors.eventName ? 'event-name-error' : undefined}
+            />
+            {errors.eventName && (
+              <p class="field-error" id="event-name-error">
+                {errors.eventName}
+              </p>
+            )}
+          </div>
+          <div class="field">
+            <label for="venueCity">Venue city</label>
+            <input type="text" id="venueCity" name="venueCity" autocomplete="address-level2" />
+          </div>
+          <div class="field">
+            <label for="attendance">Expected attendance</label>
+            <input type="text" id="attendance" name="attendance" inputmode="numeric" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" />
+          </div>
+          <button type="submit" class="btn btn--primary">
+            Tell us about your event
+          </button>
+        </form>
+      )
+    }
+  </section>
+</PageLayout>
+
+<style>
+  .grid {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .grid .panel {
+    padding: 20px;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .intro {
+    margin-top: 12px;
+    max-width: 60ch;
+  }
+  .form-panel,
+  .success-panel {
+    margin-top: 24px;
+    padding: 24px;
+    max-width: 560px;
+  }
+  @media (min-width: 900px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+  }
+</style>

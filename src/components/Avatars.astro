@@ -1,0 +1,79 @@
+---
+---
+
+<section aria-labelledby="avatars-heading" class="avatars">
+  <div class="grid">
+    <div class="panel copy-panel">
+      <h2 id="avatars-heading" class="h2">Build a face for the internet.</h2>
+      <p class="body-large">
+        Mix a look from scratch, piece by piece. Your avatar carries across chat, Reels, and streams.
+      </p>
+      <!--
+        TODO(founder): licensed character avatars are on the roadmap. Do not
+        add a licensed character's name or likeness here until the agreement
+        is signed. Once signed, add: "Or step into a licensed character."
+      -->
+    </div>
+
+    <figure class="panel media-panel">
+      <!--
+        TODO(founder), blocking — see spec §12 asset register:
+        1. IP review: confirm the mocap capture demo doesn't recreate a
+           licensed character's signature move before any cut of it ships
+           here, and rename the source file away from the property name.
+        2. Rights: confirm the mocap vendor's agreement actually licenses
+           this footage for marketing use — a shared Drive file isn't a
+           license.
+        No source exists in this repo; this panel is a placeholder only.
+      -->
+      <div class="media-placeholder" aria-hidden="true"></div>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .avatars {
+    padding: 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .copy-panel {
+    padding: 32px 24px;
+  }
+
+  .media-panel {
+    position: relative;
+    min-height: 280px;
+    margin: 0;
+  }
+
+  .media-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(192, 38, 211, 0.16), rgba(59, 130, 246, 0.2));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  @media (min-width: 900px) {
+    .avatars {
+      padding: 40px;
+    }
+    .grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .copy-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+</style>

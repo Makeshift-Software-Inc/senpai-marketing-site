@@ -16,8 +16,19 @@ export default {
           pink: '#DE0BC94D',
           blue: '#1286F04D',
         },
+        ink: '#150B1D',
+        panel: '#241333',
+        paper: '#F5F0F7',
+        'grad-a': '#3B82F6',
+        'grad-b': '#C026D3',
+        accent: '#FF4D9D',
+      },
+      borderRadius: {
+        panel: '2px',
       },
       fontFamily: {
+        display: ['"Zen Kaku Gothic New"', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
         geomanist: ['Geomanist', 'sans-serif'],
         lato: ['Lato', 'sans-serif'],
       },
@@ -40,37 +51,37 @@ export default {
     plugin(function ({ addComponents }) {
       addComponents({
         '.h1': {
-          '@apply font-geomanist sm:text-7xl text-5xl': {},
+          '@apply font-display sm:text-7xl text-5xl font-black tracking-[-0.02em]': {},
         },
         '.h2': {
-          '@apply font-lato sm:text-5xl text-4xl font-bold': {},
+          '@apply font-display sm:text-5xl text-4xl font-bold tracking-[-0.02em]': {},
         },
         '.h3': {
-          '@apply font-lato sm:text-4xl text-3xl font-semibold': {},
+          '@apply font-display sm:text-4xl text-3xl font-bold tracking-[-0.02em]': {},
         },
         '.title1': {
-          '@apply font-lato sm:text-3xl text-2xl font-semibold': {},
+          '@apply font-display sm:text-3xl text-2xl font-bold': {},
         },
         '.title2': {
-          '@apply font-lato sm:text-2xl text-xl font-normal': {},
+          '@apply font-body sm:text-2xl text-xl font-medium': {},
         },
         '.txt-extra': {
-          '@apply font-lato sm:text-6xl text-3xl font-bold': {},
+          '@apply font-display sm:text-6xl text-3xl font-bold tracking-[-0.02em]': {},
         },
         '.caption1': {
-          '@apply font-lato sm:text-lg text-md font-normal': {},
+          '@apply font-body sm:text-lg text-md font-normal': {},
         },
         '.caption2': {
-          '@apply font-lato sm:text-md text-lt font-normal': {},
+          '@apply font-body sm:text-md text-lt font-normal': {},
         },
         '.body-large': {
-          '@apply font-lato sm:text-xl text-lg font-normal': {},
+          '@apply font-body sm:text-xl text-lg font-normal': {},
         },
         '.btn-caption': {
-          '@apply font-lato sm:text-lg text-md font-bold': {},
+          '@apply font-display sm:text-lg text-md font-bold': {},
         },
         '.txt-input': {
-          '@apply font-lato sm:text-lg text-md font-normal': {},
+          '@apply font-body sm:text-lg text-md font-normal': {},
         },
       });
     }),

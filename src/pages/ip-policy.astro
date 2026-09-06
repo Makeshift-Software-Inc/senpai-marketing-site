@@ -1,0 +1,85 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const lastUpdated = '2026-09-06';
+const lastUpdatedDisplay = new Date(lastUpdated).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const metadata = {
+  title: 'IP Policy',
+  description: "Senpai's intellectual property and DMCA takedown policy.",
+};
+
+// TODO(founder), blocking: register a designated DMCA agent with the U.S.
+// Copyright Office (see https://www.copyright.gov/dmca-directory/) and
+// replace the {{DMCA_AGENT_NAME}} / {{DMCA_AGENT_ADDRESS}} tokens below
+// with the real registered name and address. A takedown policy without a
+// properly registered agent doesn't confer DMCA safe-harbor protection.
+// Have legal review this whole page before it goes live.
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="ip-heading" class="page-wrap legal">
+    <h1 id="ip-heading" class="h2">Intellectual Property Policy</h1>
+    <p class="caption2 updated">Last updated: {lastUpdatedDisplay}</p>
+
+    <p class="caption1">
+      Senpai respects the intellectual property rights of others, including anime and manga rights holders, and
+      expects the same from everyone who uses the app — including content made in Create and any avatar built in
+      Senpai.
+    </p>
+
+    <h2 class="title2">Reporting infringement</h2>
+    <p class="caption1">
+      If you believe content on Senpai infringes your copyright, send a notice to our designated agent under the
+      Digital Millennium Copyright Act (DMCA):
+    </p>
+    <p class="caption1 agent">
+      {'{{DMCA_AGENT_NAME}}'}<br />
+      Makeshift Software Inc.<br />
+      {'{{DMCA_AGENT_ADDRESS}}'}<br />
+      <a href="mailto:team@senpaiapp.com">team@senpaiapp.com</a>
+    </p>
+    <p class="caption1">
+      Your notice should identify the copyrighted work, the material you believe infringes it, and how to contact
+      you, along with a statement made under penalty of perjury that you're authorized to act on the rights
+      holder's behalf.
+    </p>
+
+    <h2 class="title2">Counter-notice</h2>
+    <p class="caption1">
+      If your content was removed and you believe that was a mistake, you may submit a counter-notice to the same
+      contact identifying the removed content and why you believe it doesn't infringe.
+    </p>
+
+    <h2 class="title2">Repeat infringers</h2>
+    <p class="caption1">We terminate the accounts of users found to be repeat infringers.</p>
+  </section>
+</PageLayout>
+
+<style>
+  .legal {
+    max-width: 720px;
+  }
+  .legal h2 {
+    margin-top: 32px;
+  }
+  .legal p {
+    margin-top: 12px;
+  }
+  .agent {
+    padding: 16px 20px;
+    background: var(--panel);
+    border-radius: 2px;
+  }
+  .updated {
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 8px;
+  }
+  .legal a {
+    color: var(--accent);
+  }
+</style>

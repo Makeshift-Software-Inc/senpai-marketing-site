@@ -1,0 +1,66 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fans/id6464066826';
+
+const metadata = {
+  title: 'Get Senpai',
+  description: 'Download Senpai on the App Store — match, post, and make anime with fans who watch what you watch.',
+};
+
+const softwareAppJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Senpai',
+  operatingSystem: 'iOS',
+  applicationCategory: 'SocialNetworkingApplication',
+  url: APP_STORE_URL,
+};
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="download-heading" class="page-wrap">
+    <div class="panel page-hero">
+      <h1 id="download-heading" class="h1">Get Senpai.</h1>
+      <div class="actions">
+        <a href={APP_STORE_URL} class="store-badge">
+          <img src="/assets/images/appstore.png" alt="Download on the App Store" width={217} height={71} />
+        </a>
+        <img
+          src="/assets/images/barcode.png"
+          alt="QR code linking to the Senpai App Store listing"
+          width={120}
+          height={120}
+          class="qr"
+        />
+      </div>
+      <!-- TODO(founder): {{IOS_MIN_VERSION}} — confirm the minimum supported iOS version before publishing this. -->
+      <p class="caption2 requirements">Requires iOS {'{{IOS_MIN_VERSION}}'} or later.</p>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(softwareAppJsonLd)} is:inline />
+</PageLayout>
+
+<style>
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .store-badge img {
+    height: 48px;
+    width: auto;
+    display: block;
+  }
+  .qr {
+    width: 96px;
+    height: 96px;
+  }
+  .requirements {
+    margin-top: 24px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+</style>

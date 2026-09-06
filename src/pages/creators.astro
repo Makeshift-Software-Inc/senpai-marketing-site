@@ -1,0 +1,115 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Creators',
+  description: 'Apply to create on Senpai — get your work seen and commissioned through Gengado.',
+};
+
+const errors = { handle: '', platform: '', why: '' };
+let success = false;
+
+if (Astro.request.method === 'POST') {
+  const data = await Astro.request.formData();
+  const handle = data.get('handle');
+  const platform = data.get('platform');
+  const why = data.get('why');
+
+  if (typeof handle !== 'string' || !handle.trim()) {
+    errors.handle = 'Enter your handle.';
+  }
+  if (typeof platform !== 'string' || !platform.trim()) {
+    errors.platform = 'Enter the platform you create on.';
+  }
+  if (typeof why !== 'string' || !why.trim()) {
+    errors.why = 'Tell us why you want to create on Senpai.';
+  }
+
+  if (!errors.handle && !errors.platform && !errors.why) {
+    // TODO(founder): wire this to a real intake (email or CRM). Nothing is
+    // persisted or forwarded yet — submissions are validated only.
+    success = true;
+  }
+}
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="creators-heading" class="page-wrap">
+    <div class="panel page-hero">
+      <h1 id="creators-heading" class="h1">Post first, get seen first.</h1>
+    </div>
+
+    {
+      success ? (
+        <div class="panel success-panel" role="status">
+          <p class="caption1">Thanks — we've got your application and will follow up by email.</p>
+        </div>
+      ) : (
+        <form method="POST" class="panel form-panel">
+          <div class="field">
+            <label for="handle">Handle</label>
+            <input
+              type="text"
+              id="handle"
+              name="handle"
+              autocomplete="off"
+              aria-invalid={errors.handle ? 'true' : undefined}
+              aria-describedby={errors.handle ? 'handle-error' : undefined}
+            />
+            {errors.handle && (
+              <p class="field-error" id="handle-error">
+                {errors.handle}
+              </p>
+            )}
+          </div>
+          <div class="field">
+            <label for="platform">Platform</label>
+            <input
+              type="text"
+              id="platform"
+              name="platform"
+              autocomplete="off"
+              aria-invalid={errors.platform ? 'true' : undefined}
+              aria-describedby={errors.platform ? 'platform-error' : undefined}
+            />
+            {errors.platform && (
+              <p class="field-error" id="platform-error">
+                {errors.platform}
+              </p>
+            )}
+          </div>
+          <div class="field">
+            <label for="links">Links</label>
+            <input type="url" id="links" name="links" autocomplete="url" />
+          </div>
+          <div class="field">
+            <label for="why">Why</label>
+            <textarea
+              id="why"
+              name="why"
+              aria-invalid={errors.why ? 'true' : undefined}
+              aria-describedby={errors.why ? 'why-error' : undefined}
+            />
+            {errors.why && (
+              <p class="field-error" id="why-error">
+                {errors.why}
+              </p>
+            )}
+          </div>
+          <button type="submit" class="btn btn--primary">
+            Apply to create
+          </button>
+        </form>
+      )
+    }
+  </section>
+</PageLayout>
+
+<style>
+  .form-panel,
+  .success-panel {
+    margin-top: 24px;
+    padding: 24px;
+    max-width: 560px;
+  }
+</style>

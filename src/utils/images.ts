@@ -58,7 +58,7 @@ export const adaptOpenGraphImages = async (
 
   const images = openGraph.images;
   const defaultWidth = 1200;
-  const defaultHeight = 626;
+  const defaultHeight = 630;
 
   const adaptedImages = await Promise.all(
     images.map(async (image) => {

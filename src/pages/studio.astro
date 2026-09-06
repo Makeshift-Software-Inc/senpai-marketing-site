@@ -1,0 +1,68 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Senpai Studio',
+  description: 'Senpai Studio maps your movement onto a 3D avatar and pipes it straight into OBS.',
+};
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="studio-heading" class="page-wrap">
+    <div class="panel page-hero">
+      <h1 id="studio-heading" class="h1">Stream as the character.</h1>
+      <p class="body-large">Senpai Studio maps your movement onto a 3D avatar and pipes it straight into OBS.</p>
+    </div>
+
+    <div class="panel requirements-panel">
+      <h2 class="title2">Requirements</h2>
+      <ul>
+        <li class="caption1">Windows 10 or later.</li>
+        <li class="caption1">OBS with the Spout plugin.</li>
+        <li class="caption1">Not available on macOS.</li>
+      </ul>
+    </div>
+
+    <figure class="panel media-panel">
+      <!--
+        TODO(founder), blocking — see spec §12 asset register:
+        1. IP review: confirm the mocap capture demo doesn't recreate a
+           licensed character's signature move before any cut of it ships
+           here, and rename the source file away from the property name.
+        2. Rights: confirm the mocap vendor's agreement actually licenses
+           this footage for marketing use — a shared Drive file isn't a
+           license.
+        No source exists in this repo; this panel is a placeholder only.
+        Once cleared, this becomes a click-to-play video with visible
+        controls and a caption naming what it shows — never autoplay.
+      -->
+      <div class="media-placeholder" aria-hidden="true"></div>
+    </figure>
+  </section>
+</PageLayout>
+
+<style>
+  .requirements-panel {
+    margin-top: 16px;
+    padding: 24px;
+  }
+  .requirements-panel ul {
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .media-panel {
+    margin: 24px 0 0;
+    position: relative;
+    min-height: 320px;
+  }
+  .media-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(192, 38, 211, 0.16), rgba(59, 130, 246, 0.2));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+</style>

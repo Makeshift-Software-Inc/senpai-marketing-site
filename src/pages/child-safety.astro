@@ -1,0 +1,78 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const lastUpdated = '2026-09-06';
+const lastUpdatedDisplay = new Date(lastUpdated).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const metadata = {
+  title: 'Child Safety',
+  description: "Senpai's standards against child sexual abuse and exploitation, and how to report a concern.",
+};
+
+// TODO(founder): have legal review this page before it goes live.
+// TODO(founder): confirm a dedicated safety contact address (e.g.
+// safety@senpaiapp.com) — team@senpaiapp.com is used below as the only
+// confirmed real address.
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="child-safety-heading" class="page-wrap legal">
+    <h1 id="child-safety-heading" class="h2">Child Safety Standards</h1>
+    <p class="caption2 updated">Last updated: {lastUpdatedDisplay}</p>
+
+    <p class="caption1">
+      Senpai has zero tolerance for child sexual abuse and exploitation (CSAE) in any form, including stylized or
+      generated content. This applies to every surface of the app — profiles, chat, the feed, Reels, cosplay posts,
+      and content made in Create.
+    </p>
+
+    <h2 class="title2">Age requirements</h2>
+    <p class="caption1">
+      Senpai's dating and matching features are restricted to users 18 and older. Accounts found to misrepresent
+      their age to access these features are removed.
+    </p>
+
+    <h2 class="title2">What we prohibit</h2>
+    <p class="caption1">
+      We prohibit any content that sexualizes, exploits, or endangers minors, and any attempt to use Senpai to
+      contact, groom, or solicit a minor. This applies regardless of whether the content is a photo, a generated
+      image, text, or video.
+    </p>
+
+    <h2 class="title2">How we respond</h2>
+    <p class="caption1">
+      We remove violating content and accounts on discovery, and we report apparent CSAE to the National Center for
+      Missing & Exploited Children (NCMEC) and cooperate with law enforcement as required by law.
+    </p>
+
+    <h2 class="title2">Report a concern</h2>
+    <p class="caption1">
+      Report a profile, post, or message directly from the app, or email
+      <a href="mailto:team@senpaiapp.com">team@senpaiapp.com</a> if you can't access the app. Include as much detail
+      as you can — we review every report.
+    </p>
+  </section>
+</PageLayout>
+
+<style>
+  .legal {
+    max-width: 720px;
+  }
+  .legal h2 {
+    margin-top: 32px;
+  }
+  .legal p {
+    margin-top: 12px;
+  }
+  .updated {
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 8px;
+  }
+  .legal a {
+    color: var(--accent);
+  }
+</style>

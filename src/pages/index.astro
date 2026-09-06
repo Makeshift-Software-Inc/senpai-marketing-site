@@ -1,24 +1,45 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import HowItWorks from '../components/HowItWorks.astro';
-import Join from '../components/Join.astro';
-import Track from '../components/Track.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Hero from '../components/Hero.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import Match from '../components/Match.astro';
+import Feeds from '../components/Feeds.astro';
+import Create from '../components/Create.astro';
+import Avatars from '../components/Avatars.astro';
+import Events from '../components/Events.astro';
+import Close from '../components/Close.astro';
 import Footer from '../components/Footer.astro';
 
 const metadata = {
-  title: 'Senpai | Dating App for Anime Lovers',
+  title: 'Senpai — the anime app for matching, posting, and making anime',
   ignoreTitleTemplate: true,
+  description:
+    'Match with fans who watch what you watch, post to the feed, and make your own anime shorts. Free on iPhone.',
+};
+
+const softwareAppJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Senpai',
+  operatingSystem: 'iOS',
+  applicationCategory: 'SocialNetworkingApplication',
+  url: 'https://apps.apple.com/us/app/senpai-dating-for-anime-fans/id6464066826',
 };
 ---
 
 <Layout metadata={metadata}>
-  <main class="overflow-hidden">
-    <Header />
-    <HowItWorks />
-    <Join />
-    <!-- <Track /> -->
-    <hr class="color-white opacity-10" />
-    <Footer />
+  <SiteHeader />
+  <main id="main" class="overflow-hidden">
+    <Hero />
+    <ProofStrip />
+    <Match />
+    <Feeds />
+    <Create />
+    <Avatars />
+    <Events />
+    <Close />
   </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(softwareAppJsonLd)} is:inline />
 </Layout>

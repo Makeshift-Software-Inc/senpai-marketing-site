@@ -1,0 +1,52 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Press',
+  description: 'Senpai press kit — logo, screenshots, boilerplate, and media contact.',
+};
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="press-heading" class="page-wrap">
+    <div class="panel page-hero">
+      <h1 id="press-heading" class="h1">Press</h1>
+      <p class="body-large">
+        Senpai is an anime social and dating app. Match with fans who watch what you watch, post to the feed, and
+        make your own anime shorts.
+      </p>
+    </div>
+
+    <div class="panel section-panel">
+      <h2 class="title1">Logo</h2>
+      <p class="caption1">Senpai wordmark, for use in press coverage.</p>
+      <a href="/assets/images/logo.svg" class="link">Download the logo (SVG)</a>
+    </div>
+
+    <div class="panel section-panel">
+      <h2 class="title1">Screenshots</h2>
+      <!-- TODO: real product screenshots for press use — none embedded yet -->
+      <p class="caption1">Screenshots available on request — email press contact below.</p>
+    </div>
+
+    <div class="panel section-panel">
+      <h2 class="title1">Media contact</h2>
+      <a href="mailto:team@senpaiapp.com" class="link">team@senpaiapp.com</a>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .section-panel {
+    margin-top: 16px;
+    padding: 24px;
+  }
+  .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 8px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+</style>

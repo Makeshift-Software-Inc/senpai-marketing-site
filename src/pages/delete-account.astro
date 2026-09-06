@@ -1,0 +1,64 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const lastUpdated = '2026-09-06';
+const lastUpdatedDisplay = new Date(lastUpdated).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const metadata = {
+  title: 'Delete your account',
+  description: 'How to delete your Senpai account and data, with or without access to the app.',
+};
+
+// TODO(founder): have legal review this page before it goes live, and
+// confirm the data-retention window below against actual policy/practice.
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="delete-heading" class="page-wrap legal">
+    <h1 id="delete-heading" class="h2">Delete your account</h1>
+    <p class="caption2 updated">Last updated: {lastUpdatedDisplay}</p>
+
+    <h2 class="title2">In the app</h2>
+    <p class="caption1">
+      Open Senpai, go to Settings → Account, and choose Delete Account. This permanently deletes your profile,
+      matches, messages, and posts.
+    </p>
+
+    <h2 class="title2">Without the app</h2>
+    <p class="caption1">
+      If you can't log in, email <a href="mailto:team@senpaiapp.com?subject=Delete%20my%20account"
+        >team@senpaiapp.com</a
+      > from the email address on your account and ask us to delete it. We'll confirm your identity and process the
+      request without requiring you to sign in.
+    </p>
+
+    <h2 class="title2">What gets deleted</h2>
+    <p class="caption1">
+      Your profile, photos, avatar, matches, messages, and posts are deleted. Some information may be retained
+      where required for legal, safety, or fraud-prevention purposes, for a limited period after deletion.
+    </p>
+  </section>
+</PageLayout>
+
+<style>
+  .legal {
+    max-width: 720px;
+  }
+  .legal h2 {
+    margin-top: 32px;
+  }
+  .legal p {
+    margin-top: 12px;
+  }
+  .updated {
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 8px;
+  }
+  .legal a {
+    color: var(--accent);
+  }
+</style>

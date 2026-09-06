@@ -1,0 +1,142 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import 'plyr/dist/plyr.css';
+
+const metadata = {
+  title: 'Feeds',
+  description: 'Hot takes, drops, episode reactions, full-screen anime shorts, and cosplay — all in one feed.',
+};
+
+const feeds = [
+  {
+    label: 'Feed',
+    body: 'Hot takes, drops, and episode reactions from people who watch what you watch.',
+    image: {
+      src: '/assets/images/senpai_hot_takes_screenshot.jpg',
+      alt: 'The Feed tab showing an Attack on Titan hot take, a Levi Ackerman figure drop, and a Kaiju No. 8 episode reaction post.',
+      width: 472,
+      height: 1024,
+    },
+  },
+  {
+    label: 'Reels',
+    body: 'Full-screen anime shorts. Yours or theirs.',
+    video: {
+      src: '/assets/videos/mocap-demo-vertical-v2.mp4',
+      poster: '/assets/images/mocap-demo-vertical-poster.jpg'
+    },
+  },
+  {
+    label: 'Cosplay',
+    body: 'Tag the character, tag the con, tag everyone in the shot.',
+    image: {
+      src: '/assets/images/reel_screenshot_v2.png',
+      alt: 'The Cosplay feed showing a tagged Toph cosplay post from Anime Galaxy Con, with likes, comments, and reactions.',
+      width: 386,
+      height: 588,
+    },
+  },
+];
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="feeds-page-heading" class="page-wrap">
+    <div class="panel page-hero">
+      <h1 id="feeds-page-heading" class="h1">Scroll it. Post it. Get seen.</h1>
+    </div>
+
+    <div class="feed-blocks">
+      {
+        feeds.map((feed) => (
+          <figure class="panel feed-block">
+            {feed.video ? (
+              <video
+                class="feed-video"
+                poster={feed.video.poster}
+                preload="none"
+                controls
+                playsinline
+                width="692"
+                height="1230"
+              >
+                <source src={feed.video.src} type="video/mp4" />
+              </video>
+            ) : feed.image ? (
+              <img
+                class="feed-shot"
+                src={feed.image.src}
+                alt={feed.image.alt}
+                width={feed.image.width}
+                height={feed.image.height}
+              />
+            ) : (
+              <>
+                {/* TODO: real screenshot of the {feed.label} screen — placeholder only, no fabricated content */}
+                <div class="feed-placeholder" aria-hidden="true" />
+              </>
+            )}
+            <figcaption>
+              <h2 class="title1">{feed.label}</h2>
+              <p class="caption1">{feed.body}</p>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .feed-blocks {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .feed-block {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .feed-placeholder {
+    aspect-ratio: 4 / 5;
+    background: linear-gradient(200deg, rgba(59, 130, 246, 0.16), rgba(192, 38, 211, 0.16));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .feed-shot {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .feed-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .feed-video :global(.plyr) {
+    aspect-ratio: 9 / 16;
+    border-radius: 2px;
+  }
+  .feed-video :global(.plyr__control--overlaid) {
+    background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
+  }
+  @media (min-width: 900px) {
+    .feed-blocks {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+  }
+</style>
+
+<script>
+  import Plyr from 'plyr';
+
+  document.querySelectorAll<HTMLVideoElement>('.feed-video').forEach((video) => {
+    new Plyr(video, { clickToPlay: true, resetOnEnd: true });
+  });
+</script>

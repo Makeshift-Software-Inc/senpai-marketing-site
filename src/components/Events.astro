@@ -1,0 +1,78 @@
+---
+---
+
+<section aria-labelledby="events-heading" class="events">
+  <div class="grid">
+    <div class="panel copy-panel">
+      <h2 id="events-heading" class="h2">Find your party. Everywhere you go.</h2>
+      <p class="body-large">
+        Live floor maps at conventions. See where your crew is, how long the panel queue is, and where to eat.
+      </p>
+      <a href="/events" class="link">See events near you</a>
+    </div>
+
+    <figure class="panel map-panel">
+      <!-- TODO: real floor-map screenshot — placeholder only -->
+      <div class="map-placeholder" aria-hidden="true"></div>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .events {
+    padding: 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .copy-panel {
+    padding: 32px 24px;
+  }
+
+  .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 24px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .map-panel {
+    position: relative;
+    min-height: 300px;
+    margin: 0;
+  }
+
+  .map-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(200deg, rgba(59, 130, 246, 0.2), rgba(192, 38, 211, 0.14));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  @media (min-width: 900px) {
+    .events {
+      padding: 40px;
+    }
+    .grid {
+      grid-template-columns: 1fr 1.2fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .copy-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .map-panel {
+      margin-right: -24px;
+    }
+  }
+</style>

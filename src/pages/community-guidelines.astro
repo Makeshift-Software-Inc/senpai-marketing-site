@@ -1,0 +1,90 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const lastUpdated = '2026-09-06';
+const lastUpdatedDisplay = new Date(lastUpdated).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const metadata = {
+  title: 'Community Guidelines',
+  description: 'Rules for posting, matching, and interacting on Senpai.',
+};
+
+// TODO(founder): have legal review this page before it goes live.
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="guidelines-heading" class="page-wrap legal">
+    <h1 id="guidelines-heading" class="h2">Community Guidelines</h1>
+    <p class="caption2 updated">Last updated: {lastUpdatedDisplay}</p>
+
+    <p class="caption1">
+      Senpai is built for anime fans to match, post, and create together. These guidelines apply everywhere on
+      Senpai — the feed, Reels, cosplay posts, chat, and Match.
+    </p>
+
+    <h2 class="title2">Be a real person</h2>
+    <p class="caption1">
+      Use your own identity. Don't impersonate another person, character, or brand. Don't create multiple accounts
+      to evade a suspension.
+    </p>
+
+    <h2 class="title2">Respect other fans</h2>
+    <p class="caption1">
+      No harassment, hate speech, threats, or targeted abuse. Disagreement about a show or ship is fine — attacking
+      the person isn't.
+    </p>
+
+    <h2 class="title2">Post content you have the right to post</h2>
+    <p class="caption1">
+      Tag the character, the source, and the con when you post cosplay. Give credit where it's due. Don't post
+      content you don't own or have permission to share.
+    </p>
+
+    <h2 class="title2">No sexual content involving minors</h2>
+    <p class="caption1">
+      Zero tolerance, no exceptions — including stylized or generated content. See our <a href="/child-safety"
+        >Child Safety</a
+      > policy.
+    </p>
+
+    <h2 class="title2">No spam or scams</h2>
+    <p class="caption1">
+      Don't use Senpai to sell, solicit, or run bots. Don't send unsolicited commercial messages in chat or Match.
+    </p>
+
+    <h2 class="title2">Reporting</h2>
+    <p class="caption1">
+      Report a post, profile, or message directly from the app. Our team reviews reports and takes action ranging
+      from content removal to a permanent ban, depending on severity.
+    </p>
+
+    <h2 class="title2">Enforcement</h2>
+    <p class="caption1">
+      We may remove content, restrict features, or suspend or terminate an account that violates these guidelines,
+      at our discretion and without prior notice for serious violations.
+    </p>
+  </section>
+</PageLayout>
+
+<style>
+  .legal {
+    max-width: 720px;
+  }
+  .legal h2 {
+    margin-top: 32px;
+  }
+  .legal p {
+    margin-top: 12px;
+  }
+  .updated {
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 8px;
+  }
+  .legal a {
+    color: var(--accent);
+  }
+</style>

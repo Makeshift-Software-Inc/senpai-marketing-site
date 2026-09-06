@@ -1,0 +1,150 @@
+---
+import 'plyr/dist/plyr.css';
+
+const panels = [
+  {
+    label: 'Feed',
+    caption: 'Hot takes, drops, and episode reactions from people who watch what you watch.',
+    image: {
+      src: '/assets/images/senpai_hot_takes_screenshot.jpg',
+      alt: 'The Feed tab showing an Attack on Titan hot take, a Levi Ackerman figure drop, and a Kaiju No. 8 episode reaction post.',
+      width: 472,
+      height: 1024,
+    },
+  },
+  {
+    label: 'Reels',
+    caption: 'Full-screen anime shorts. Yours or theirs.',
+    tall: true,
+    video: {
+      src: '/assets/videos/mocap-demo-vertical-v2.mp4',
+      poster: '/assets/images/mocap-demo-vertical-poster.jpg',
+      // TODO: add <track kind="captions"> if the audio turns out to carry
+      // speech rather than just music/SFX.
+    },
+  },
+  {
+    label: 'Cosplay',
+    caption: 'Tag the character, tag the con, tag everyone in the shot.',
+    image: {
+      src: '/assets/images/reel_screenshot_v2.png',
+      alt: 'The Cosplay feed showing a tagged Toph cosplay post from Anime Galaxy Con, with likes, comments, and reactions.',
+      width: 386,
+      height: 588,
+    },
+  },
+];
+---
+
+<section aria-labelledby="feeds-heading" class="feeds">
+  <h2 id="feeds-heading" class="h2">Scroll it. Post it. Get seen.</h2>
+  <div class="feeds-grid">
+    {
+      panels.map((panel) => (
+        <figure class:list={['panel feed-panel', { tall: panel.tall }]}>
+          {panel.video ? (
+            <video
+              class="feed-video"
+              poster={panel.video.poster}
+              preload="none"
+              controls
+              playsinline
+              width="692"
+              height="1230"
+            >
+              <source src={panel.video.src} type="video/mp4" />
+            </video>
+          ) : panel.image ? (
+            <img
+              class="feed-shot"
+              src={panel.image.src}
+              alt={panel.image.alt}
+              width={panel.image.width}
+              height={panel.image.height}
+            />
+          ) : (
+            <>
+              {/* TODO: real screenshot of the {panel.label} screen — placeholder only, no fabricated content */}
+              <div class="feed-placeholder" aria-hidden="true" />
+            </>
+          )}
+          <figcaption class="caption1">{panel.caption}</figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .feeds {
+    padding: 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .feeds-grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .feed-panel {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .feed-placeholder {
+    aspect-ratio: 4 / 5;
+    background: linear-gradient(200deg, rgba(59, 130, 246, 0.16), rgba(192, 38, 211, 0.16));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .feed-shot {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .feed-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .feed-video :global(.plyr) {
+    aspect-ratio: 9 / 16;
+    border-radius: 2px;
+  }
+  .feed-video :global(.plyr__control--overlaid) {
+    background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
+  }
+
+  .feed-panel.tall .feed-placeholder {
+    aspect-ratio: 9 / 16;
+  }
+
+  @media (min-width: 900px) {
+    .feeds {
+      padding: 40px;
+    }
+    .feeds-grid {
+      grid-template-columns: 1fr 1.15fr 1fr;
+      align-items: end;
+      gap: 24px;
+    }
+  }
+</style>
+
+<script>
+  import Plyr from 'plyr';
+
+  document.querySelectorAll<HTMLVideoElement>('.feed-video').forEach((video) => {
+    new Plyr(video, { clickToPlay: true, resetOnEnd: true });
+  });
+</script>

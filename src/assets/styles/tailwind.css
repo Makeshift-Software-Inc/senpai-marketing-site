@@ -20,6 +20,24 @@
   background: unset;
 }
 
+.caption1 {
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  padding: 0.4em 0 !important;
+  
+}
+
+.line-panel .caption1 { 
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  line-height: 1.6 !important;
+  border-bottom: 3px #b576b8 solid;
+}
+
+figure figcaption.caption1 {
+  padding: 1.5rem;
+}
+
 .error {
   color: red;
 }

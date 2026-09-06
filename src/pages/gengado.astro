@@ -1,0 +1,54 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Gengado',
+  description: 'Gengado is where AI-generated pilots get finished, credited, and paid by real animators and artists.',
+};
+
+const pillars = ['Built for creators.', 'Consumer and enterprise tiers.', 'From sketch to short.'];
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="gengado-heading" class="page-wrap">
+    <div class="panel page-hero">
+      <h1 id="gengado-heading" class="h1">Gengado is hiring the humans.</h1>
+      <p class="body-large">
+        AI generates the pilot. Animators and artists make it worth watching. Gengado is where that work gets
+        commissioned, credited, and paid.
+      </p>
+      <a href="/creators" class="btn btn--primary cta">Apply to create</a>
+    </div>
+
+    <div class="pillars">
+      {
+        pillars.map((pillar) => (
+          <div class="panel pillar">
+            <p class="title2">{pillar}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .cta {
+    margin-top: 24px;
+  }
+  .pillars {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .pillar {
+    padding: 24px;
+  }
+  @media (min-width: 900px) {
+    .pillars {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+  }
+</style>

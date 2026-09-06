@@ -1,0 +1,29 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Senpai Attraction',
+  description: 'A live mocap kiosk that turns any guest into a fully animated anime character in real time.',
+  robots: { index: false, follow: false },
+};
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="attraction-heading" class="page-wrap">
+    <div class="panel page-hero">
+      <h1 id="attraction-heading" class="h1">Step into character.</h1>
+      <p class="body-large">
+        Any guest becomes a fully animated anime character in real time. No wearables, no calibration, no operator.
+      </p>
+      <a href="mailto:team@senpaiapp.com?subject=Senpai%20Attraction%20demo%20request" class="btn btn--primary cta">
+        Request a demo
+      </a>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .cta {
+    margin-top: 24px;
+  }
+</style>

@@ -1,0 +1,133 @@
+---
+const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fans/id6464066826';
+---
+
+<section aria-labelledby="hero-heading" class="hero">
+  <div class="hero-grid">
+    <div class="panel copy-panel">
+      <h1 id="hero-heading" class="h1">Your people are here.</h1>
+      <p class="sub body-large">
+        Match, post, and make anime with fans who watch what you watch. Free on iPhone.
+      </p>
+      <a href={APP_STORE_URL} class="store-badge">
+        <img
+          src="/assets/images/appstore.png"
+          alt="Download on the App Store"
+          width={217}
+          height={71}
+          loading="eager"
+        />
+      </a>
+    </div>
+
+    <figure class="panel phone-panel">
+      <!--
+        TODO(founder): real hero clip. Per spec §12, this slot ships poster-only
+        (or empty, absent a poster) until real in-app footage exists. Do not
+        substitute stock/mockup footage or another product's video here.
+        Target: 6-10s vertical loop, audio stripped, served from Bunny Stream.
+      -->
+      <div class="phone-placeholder" aria-hidden="true"></div>
+      <img
+        class="break-character"
+        src="/assets/images/hero-character-right-upper-2.png"
+        alt=""
+        width={400}
+        height={500}
+      />
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 24px 24px 24px 24px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .copy-panel {
+    padding: 40px 24px;
+  }
+
+  .sub {
+    margin-top: 20px;
+    max-width: 42ch;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .store-badge {
+    display: inline-block;
+    margin-top: 32px;
+  }
+  .store-badge img {
+    height: 48px;
+    width: auto;
+    display: block;
+  }
+
+  .phone-panel {
+    position: relative;
+    min-height: 360px;
+    overflow: visible;
+    margin: 0;
+  }
+
+  .phone-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(59, 130, 246, 0.18), rgba(192, 38, 211, 0.18));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .break-character {
+    position: absolute;
+    left: -24px;
+    bottom: -32px;
+    width: 140px;
+    height: auto;
+  }
+
+  @media (min-width: 900px) {
+    .hero {
+      padding: 40px 0 40px 40px;
+    }
+    .hero-grid {
+      grid-template-columns: 1fr 1.1fr;
+      align-items: stretch;
+      max-width: none;
+      margin: 0;
+      padding-right: 0;
+    }
+    .copy-panel {
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 640px;
+    }
+    .phone-panel {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .break-character {
+      left: -48px;
+      bottom: -40px;
+      width: 200px;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .hero-grid {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding-right: 40px;
+    }
+  }
+</style>

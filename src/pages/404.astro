@@ -1,0 +1,42 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Not found',
+  robots: { index: false, follow: false },
+};
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="not-found-heading" class="page-wrap not-found">
+    <div class="panel page-hero">
+      <h1 id="not-found-heading" class="h1">This one's not in the archive.</h1>
+      <div class="actions">
+        <a href="/" class="btn btn--primary">Home</a>
+        <a href="/download" class="link">Download</a>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .not-found {
+    display: flex;
+    align-items: center;
+    min-height: 60vh;
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+</style>

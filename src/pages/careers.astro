@@ -1,0 +1,55 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Careers',
+  description: 'Open roles at Senpai — Ruby, Flutter, and Unity engineering, plus community management.',
+};
+
+const roles = [
+  { title: 'Ruby Engineer', count: 1 },
+  { title: 'Flutter Engineer', count: 2 },
+  { title: 'Unity Engineer', count: 1 },
+  { title: 'Community Manager', count: 1 },
+];
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="careers-heading" class="page-wrap">
+    <div class="panel page-hero">
+      <h1 id="careers-heading" class="h1">Build Senpai.</h1>
+    </div>
+
+    <ul class="roles">
+      {
+        roles.map((role) => (
+          <li class="panel role-panel">
+            <span class="title2">{role.title}</span>
+            {role.count > 1 && <span class="caption2 count">{role.count} openings</span>}
+            {/* TODO(founder): publish salary bands or not? Real recruiting advantage at this size, but publishing fixes them publicly. */}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</PageLayout>
+
+<style>
+  .roles {
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .role-panel {
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .count {
+    color: rgba(255, 255, 255, 0.6);
+  }
+</style>

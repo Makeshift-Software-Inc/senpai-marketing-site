@@ -1,0 +1,21 @@
+---
+import Layout from './Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Footer from '../components/Footer.astro';
+
+import type { MetaData as MetaDataType } from '~/types';
+
+interface Props {
+  metadata?: MetaDataType;
+}
+
+const { metadata = {} } = Astro.props;
+---
+
+<Layout metadata={metadata}>
+  <SiteHeader />
+  <main id="main" class="overflow-hidden">
+    <slot />
+  </main>
+  <Footer />
+</Layout>

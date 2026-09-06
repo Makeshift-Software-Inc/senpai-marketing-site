@@ -25,6 +25,13 @@ const { metadata = {} } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <Metadata {...metadata} />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@700;900&family=Inter:wght@400;500&display=swap"
+    />
+
     <!-- Google tag (gtag.js) -->
     <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-T618C64LJX"></script>
     <script type="text/partytown">
@@ -39,16 +46,123 @@ const { metadata = {} } = Astro.props;
     <slot />
     <style is:global>
       :root {
-        --accent: 136, 58, 234;
-        --accent-light: 224, 204, 250;
-        --accent-dark: 49, 10, 101;
-        --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
+        --ink: #150b1d;
+        --panel: #241333;
+        --paper: #f5f0f7;
+        --grad-a: #3b82f6;
+        --grad-b: #c026d3;
+        --accent: #ff4d9d;
       }
       html {
-        font-family: Lato, sans-serif;
-        background: #0e1018;
-        background-size: 224px;
+        font-family: Inter, sans-serif;
+        background: var(--ink);
         color: #fff;
+      }
+      :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 24px;
+        border-radius: 2px;
+        font-weight: 700;
+        font-size: 19px;
+        text-align: center;
+        color: #fff;
+      }
+      .btn--primary {
+        background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
+      }
+
+      .panel {
+        background: var(--panel);
+        border-radius: 2px;
+      }
+      .panel--paper {
+        background: var(--paper);
+        color: var(--ink);
+      }
+
+      .page-wrap {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      @media (min-width: 900px) {
+        .page-wrap {
+          padding: 40px;
+        }
+      }
+
+      .page-hero {
+        padding: 40px 24px;
+      }
+      @media (min-width: 900px) {
+        .page-hero {
+          padding: 64px 48px;
+        }
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 20px;
+      }
+      .field label {
+        font-weight: 500;
+        font-size: 14px;
+      }
+      .field input,
+      .field textarea,
+      .field select {
+        min-height: 44px;
+        padding: 10px 14px;
+        background: var(--ink);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 2px;
+        color: #fff;
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+      }
+      .field textarea {
+        min-height: 120px;
+        padding-top: 12px;
+      }
+      .field .field-error {
+        color: var(--accent);
+        font-size: 14px;
+      }
+      .field input:invalid[aria-invalid='true'],
+      .field textarea:invalid[aria-invalid='true'] {
+        border-color: var(--accent);
       }
     </style>
   </body>

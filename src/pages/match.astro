@@ -1,0 +1,77 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Match',
+  description: 'Talk as your avatar before you show your face. Every account on Senpai is verified.',
+};
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="match-page-heading" class="page-wrap">
+    <div class="panel page-hero">
+      <span class="age-marker">18+</span>
+      <h1 id="match-page-heading" class="h1">Chemistry first. Match after.</h1>
+      <p class="body-large">
+        Talk as your avatar before you show your face. Every account is verified, so there's a real person on the
+        other side.
+      </p>
+      <a href="/download" class="btn btn--primary cta">Get the app</a>
+    </div>
+
+    <div class="grid">
+      <div class="panel">
+        <h2 class="title1">Chat first, reveal later</h2>
+        <p class="caption1">
+          Every match starts as a video call between avatars. You decide when — or if — to show your face.
+        </p>
+      </div>
+      <div class="panel">
+        <h2 class="title1">Only real users, verified</h2>
+        <p class="caption1">Every account goes through verification before it can match, so who you meet is real.</p>
+      </div>
+      <div class="panel">
+        <h2 class="title1">Matched on taste, not just looks</h2>
+        <p class="caption1">
+          Pick your top ten anime when you sign up. Senpai matches you with people who watch what you watch before
+          anything else.
+        </p>
+      </div>
+      <div class="panel">
+        <h2 class="title1">Avatar-powered live video</h2>
+        <p class="caption1">Your avatar carries your expressions into the call in real time — no face required.</p>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .age-marker {
+    display: inline-block;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+  .cta {
+    margin-top: 24px;
+  }
+  .grid {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .grid .panel {
+    padding: 24px;
+  }
+  @media (min-width: 900px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+  }
+</style>

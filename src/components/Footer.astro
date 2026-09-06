@@ -1,45 +1,167 @@
 ---
 const year = new Date().getFullYear();
+
+const columns = [
+  {
+    heading: 'App',
+    links: [
+      { href: '/match', label: 'Match' },
+      { href: '/feeds', label: 'Feeds' },
+      { href: '/create', label: 'Create' },
+      { href: '/events', label: 'Events' },
+      { href: '/download', label: 'Download' },
+    ],
+  },
+  {
+    heading: 'Company',
+    links: [
+      { href: '/careers', label: 'Careers' },
+      { href: '/press', label: 'Press' },
+      { href: 'mailto:team@senpaiapp.com', label: 'Contact' },
+    ],
+  },
+  {
+    heading: 'Build with us',
+    links: [
+      { href: '/gengado', label: 'Gengado' },
+      { href: '/studio', label: 'Senpai Studio' },
+      { href: '/creators', label: 'Creators' },
+    ],
+  },
+  {
+    heading: 'Legal',
+    links: [
+      { href: '/privacy-policy', label: 'Privacy Policy' },
+      { href: '/terms-of-service', label: 'Terms of Service' },
+      { href: '/cookie-policy', label: 'Cookie Policy' },
+      { href: '/community-guidelines', label: 'Community Guidelines' },
+      { href: '/child-safety', label: 'Child Safety' },
+      { href: '/delete-account', label: 'Delete your account' },
+      { href: '/ip-policy', label: 'IP policy' },
+    ],
+  },
+];
+
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Makeshift Software Inc.',
+  url: 'https://www.senpaiapp.com',
+  sameAs: ['https://twitter.com/senpai_app', 'https://www.tiktok.com/@senpaiapp'],
+};
 ---
 
-<div class="footer text-center p-8">
-  <div class="flex sm:flex-row flex-col items-center justify-center gap-4">
-    <a href="/cookie-policy" class="">
-      Cookie Policy
-    </a>
-    <a href="/privacy-policy">
-      Privacy Policy
-    </a>
-    <a href="/terms-of-service">
-      Terms Of Service
-    </a>
+<footer class="site-footer">
+  <div class="cols">
+    {
+      columns.map((col) => (
+        <nav aria-label={col.heading}>
+          <h2 class="col-heading caption2">{col.heading}</h2>
+          <ul>
+            {col.links.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
   </div>
-  <div class="caption2 text-neutral-200 mt-8">© {year} Makeshift Software Inc. All Rights Reserved</div>
-  <div class="social-icons flex items-center gap-1 mt-4 justify-center">
-    <a href="https://youtube.com">
-      <img src="/assets/images/youtube.svg" alt="youtube" width={40} class="h-[40px]" />
-    </a>
-    <a href="https://instagram.com">
-      <img src="/assets/images/instagram.svg" alt="youtube" width={40} class="h-[40px]" />
-    </a>
-    <a href="https://twitter.com/senpai_app">
-      <img src="/assets/images/twitter.svg" alt="youtube" width={40} class="h-[40px]" />
-    </a>
-    <a href="https://www.tiktok.com/@senpaiapp">
-      <img src="/assets/images/tiktok.svg" alt="youtube" width={40} class="h-[40px]" />
-    </a>
+
+  <!-- TODO: language switcher (<select> or hreflang links per spec §6.11) — deferred to the i18n phase, no locale routes exist yet -->
+  <div class="bottom">
+    <p class="caption2 legal-line">Makeshift Software Inc. © {year}</p>
+
+    <!--
+      TODO(founder): real YouTube/Instagram URLs. Currently omitted per
+      spec §1 defect 5 — the live site points these at bare
+      youtube.com/instagram.com, which isn't a real account link.
+      {{YOUTUBE_URL}}, {{INSTAGRAM_URL}}
+    -->
+    <div class="social-icons">
+      <a href="https://twitter.com/senpai_app" aria-label="Senpai on X">
+        <img src="/assets/images/twitter.svg" alt="" width={32} height={32} aria-hidden="true" />
+      </a>
+      <a href="https://www.tiktok.com/@senpaiapp" aria-label="Senpai on TikTok">
+        <img src="/assets/images/tiktok.svg" alt="" width={32} height={32} aria-hidden="true" />
+      </a>
+    </div>
   </div>
-  <img src="/assets/images/footer-gradient.png" alt="footer-bg" class="footer-bg" />
-</div>
+</footer>
+
+<script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} is:inline />
 
 <style>
-  .footer {
-    position: relative;
+  .site-footer {
+    padding: 40px 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
 
-    .footer-bg {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .col-heading {
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 12px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  ul a {
+    color: #fff;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .legal-line {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 8px;
+  }
+  .social-icons a {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 900px) {
+    .cols {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 </style>

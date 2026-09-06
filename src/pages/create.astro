@@ -1,0 +1,96 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Create',
+  description: 'Describe a scene and Senpai builds it — art, motion, sound. Post it to the feed in the same session.',
+};
+
+const steps = [
+  { label: 'Prompt', body: 'Type what you want to see.' },
+  { label: 'Art', body: 'Senpai draws the scene.' },
+  { label: 'Motion', body: 'Stills become video.' },
+  { label: 'Short', body: 'A five to fifteen second anime clip.' },
+  { label: 'Feed', body: 'Post it, and the fandom finds it.' },
+];
+---
+
+<PageLayout metadata={metadata}>
+  <section aria-labelledby="create-page-heading" class="page-wrap">
+    <div class="panel page-hero">
+      <h1 id="create-page-heading" class="h1">Make the episode you wanted to see.</h1>
+      <p class="body-large">
+        Describe a scene and Senpai builds it — art, motion, sound. Post it to the feed in the same session.
+      </p>
+    </div>
+
+    <ol class="steps">
+      {
+        steps.map((step, i) => (
+          <li class="panel step-panel">
+            <span class="step-number" aria-hidden="true">
+              {i + 1}
+            </span>
+            <span class="step-label title2">{step.label}</span>
+            <p class="caption1">{step.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <figure class="panel example-panel">
+      <!-- TODO: embed a real example clip generated in Create — placeholder only, no fabricated output -->
+      <div class="example-placeholder" aria-hidden="true"></div>
+      <figcaption class="caption2">Example output — a short generated in Create.</figcaption>
+    </figure>
+  </section>
+</PageLayout>
+
+<style>
+  .steps {
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .step-panel {
+    padding: 20px;
+  }
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 2px;
+    background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .step-label {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .example-panel {
+    margin-top: 24px;
+    padding: 16px;
+  }
+  .example-placeholder {
+    aspect-ratio: 9 / 16;
+    max-width: 320px;
+    background: linear-gradient(200deg, rgba(59, 130, 246, 0.18), rgba(192, 38, 211, 0.18));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .example-panel figcaption {
+    margin-top: 12px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  @media (min-width: 900px) {
+    .steps {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+</style>
