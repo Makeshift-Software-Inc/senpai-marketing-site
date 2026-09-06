@@ -21,7 +21,7 @@
       "siteName": "Senpai — the anime app for matching, posting, and making anime",
       "images": [
         {
-          "url": "~/assets/images/senpai-og-preview.jpg",
+          "url": "/assets/images/senpai-og-preview.jpg",
           "width": 1200,
           "height": 630
         }
