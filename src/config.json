@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "Senpai — the anime app for matching, posting, and making anime",
+    "name": "Senpai — Anime hits different together.",
     "site": "https://www.senpaiapp.com",
     "base": "/",
     "trailingSlash": false,
@@ -9,7 +9,7 @@
   },
   "metadata": {
     "title": {
-      "default": "Senpai — the anime app for matching, posting, and making anime",
+      "default": "Senpai — Anime hits different together.",
       "template": "%s | Senpai"
     },
     "description": "Match with fans who watch what you watch, post to the feed, and make your own anime shorts. Free on iPhone.",
@@ -18,7 +18,7 @@
       "follow": true
     },
     "openGraph": {
-      "siteName": "Senpai — the anime app for matching, posting, and making anime",
+      "siteName": "Senpai — Anime hits different together.",
       "images": [
         {
           "url": "/assets/images/senpai-og-preview.jpg",
