@@ -1,0 +1,261 @@
+---
+interface Props {
+  class?: string;
+  hideCharacters?: boolean;
+  charactersWidth?: string;
+}
+
+const { class: className, hideCharacters = false, charactersWidth } = Astro.props;
+---
+
+<div class:list={['floating-characters', className]} aria-hidden="true">
+  <div class="dot-circles">
+    <div class="dot-circle dot-circle-1">
+      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle
+          cx="200"
+          cy="200"
+          r="200"
+          stroke="url(#floGrad1)"
+          stroke-width="0.919743"
+          stroke-dasharray="7.36 7.36"></circle>
+        <defs>
+          <linearGradient id="floGrad1" x1="200" y1="0" x2="200" y2="400" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#DE0BC9"></stop>
+            <stop offset="1" stop-color="#1286F0"></stop>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="dot-circle dot-circle-2">
+      <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle
+          cx="150"
+          cy="150"
+          r="150"
+          stroke="url(#floGrad2)"
+          stroke-width="0.919743"
+          stroke-dasharray="7.36 7.36"></circle>
+        <defs>
+          <linearGradient id="floGrad2" x1="150" y1="0" x2="150" y2="300" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#DE0BC9"></stop>
+            <stop offset="1" stop-color="#1286F0"></stop>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="dot-circle dot-circle-3">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle
+          cx="100"
+          cy="100"
+          r="100"
+          stroke="url(#floGrad3)"
+          stroke-width="0.919743"
+          stroke-dasharray="7.36 7.36"></circle>
+        <defs>
+          <linearGradient id="floGrad3" x1="100" y1="0" x2="100" y2="200" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#DE0BC9"></stop>
+            <stop offset="1" stop-color="#1286F0"></stop>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <div class="heart heart-pink">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 36 36" fill="none">
+      <path
+        d="M32.3179 13.8384C32.3179 20.7687 26.5897 24.4617 22.3965 27.7672C20.9169 28.9337 19.4917 30.0319 18.0666 30.0319C16.6415 30.0319 15.2164 28.9337 13.7367 27.7672C9.54356 24.4617 3.81538 20.7687 3.81538 13.8384C3.81538 6.90809 11.6538 1.99327 18.0666 8.65597C24.4795 1.99327 32.3179 6.9081 32.3179 13.8384Z"
+        fill="#BC20CF"></path>
+    </svg>
+  </div>
+  <div class="heart heart-blue">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 33 33" fill="none">
+      <path
+        d="M3.05191 12.4719C3.05191 19.0495 8.48862 22.5546 12.4684 25.6919C13.8728 26.799 15.2254 27.8414 16.578 27.8414C17.9306 27.8414 19.2832 26.799 20.6876 25.6919C24.6673 22.5546 30.104 19.0495 30.104 12.4719C30.104 5.89422 22.6645 1.22949 16.578 7.55315C10.4915 1.22949 3.05191 5.89422 3.05191 12.4719Z"
+        fill="#3472EA"></path>
+    </svg>
+  </div>
+
+  {
+    !hideCharacters && (
+      <div class="floating-char-group" style={charactersWidth ? `width: ${charactersWidth};` : undefined}>
+        <img class="floating-char" src="/assets/images/hero-character-left-upper.png" alt="" width="150" height="242" />
+        <img class="floating-char" src="/assets/images/hero-character-left-lower.png" alt="" width="210" height="311" />
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .floating-characters {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  .dot-circles {
+    position: relative;
+    width: 100%;
+    height: 220px;
+  }
+
+  /*
+    Matches production's exact alignment pattern (WifesLeft.astro,
+    data-astro-cid-h5tt2m2s): each circle steps diagonally by a constant
+    +50px/+50px from the last, at full scale (200/300/400px circles).
+    These circles are rendered at half that scale (100/150/200px) to fit
+    the smaller phone-placeholder container, so the step is halved to
+    25px/25px to preserve the same relative alignment. Horizontal offsets
+    are anchored to the midpoint of .dot-circles (calc(50% ± px)) rather
+    than a fixed left value, so the cluster stays centered as that
+    container's width responds to its parent.
+
+    Size is in vw, not a percentage of .dot-circles — tied directly to the
+    viewport rather than to this specific ancestor's resolved width. Two
+    sets of values are needed because .phone-panel occupies a very
+    different share of the viewport before/after Hero's own 900px
+    breakpoint (~full-width minus padding on mobile, ~52% of the hero grid
+    on desktop); each set preserves the original 200/150/100px ratio for
+    its layout. Note this trades away the automatic upper bound a
+    percentage gave for free: .hero-grid caps at 1600px, but vw doesn't
+    know that, so past that width these keep growing with the viewport
+    instead of leveling off with .phone-panel. .dot-circle svg stays at
+    width/height:100%, so it already follows .dot-circle's size
+    automatically — nothing further needed there for it to be responsive.
+  */
+  /*
+    left is the horizontal center of each circle, not its edge: widths are
+    variable per-circle percentages, so anchoring by left edge alone would
+    put each circle's actual center at a different, size-dependent offset
+    from the others. translateX(-50%) shifts by half of whatever width the
+    circle resolves to, so "left" always lands on its true center.
+
+    The rotation animation lives on the <svg> rather than this div because
+    a CSS animation replaces the whole `transform` property for its
+    duration — a static transform:translateX(-50%) here would be
+    overridden the instant the animation started. Rotating the svg instead
+    (visually identical, since it fills this div at 100%/100%) keeps the
+    two transforms independent.
+
+    left is set to center each circle on the VIEWPORT (not on .dot-circles,
+    which is what calc(50% ± px) alone would do) — deliberately, since
+    .phone-panel is not viewport-centered at desktop widths (it bleeds off
+    the right edge of the screen per Hero's layout). Centering on the
+    viewport means compensating for exactly how far .dot-circles' own left
+    edge sits from the viewport's left edge, which is a genuinely different
+    value at each of Hero's three layout regimes (derived from Hero.astro's
+    actual grid math — padding, the 1fr/1.1fr column ratio, the 24px grid
+    gap, and the 1600px cap — not guessed):
+      <900px:    .dot-circles starts at a constant 24px (.hero's padding;
+                 single-column, so .phone-panel spans full width).
+      900–1599px: .dot-circles starts at ~47.62vw + 33.52px (the 1.1fr
+                 column's start point, which is a linear function of
+                 viewport width in this unconstrained range).
+      >=1600px:  .hero-grid is capped and centers itself, so the offset
+                 collapses back to a constant (~50vw - 24.57px, i.e. a
+                 fixed distance from viewport-center).
+    In each case, left(local) = 50vw - offset - Npx, algebraically
+    simplified below. This is real per-breakpoint arithmetic tied to
+    Hero.astro's current values — if those change (padding, column ratio,
+    gap, breakpoints), these numbers need to be re-derived, they won't
+    self-correct. Derived, not visually verified in a browser — check this
+    against the actual rendered page.
+  */
+  .dot-circle {
+    position: absolute;
+    aspect-ratio: 1 / 1;
+    transform: translateX(-50%);
+  }
+  .dot-circle-1 {
+    width: 44vw;
+    left: calc(50vw - 84px);
+    bottom: 20px;
+  }
+  .dot-circle-2 {
+    width: 33vw;
+    left: calc(50vw - 59px);
+    bottom: 45px;
+  }
+  .dot-circle-3 {
+    width: 22vw;
+    left: calc(50vw - 34px);
+    bottom: 70px;
+  }
+
+  @media (min-width: 900px) {
+    .dot-circle-1 {
+      width: 24vw;
+      left: calc(2.38vw - 94px);
+    }
+    .dot-circle-2 {
+      width: 18vw;
+      left: calc(2.38vw - 69px);
+    }
+    .dot-circle-3 {
+      width: 12vw;
+      left: calc(2.38vw - 44px);
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .dot-circle-1 {
+      left: -35px;
+    }
+    .dot-circle-2 {
+      left: -10px;
+    }
+    .dot-circle-3 {
+      left: 15px;
+    }
+  }
+  .dot-circle svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .dot-circle-1 svg,
+  .dot-circle-3 svg {
+    animation: circle 48s linear infinite;
+  }
+  .dot-circle-2 svg {
+    animation: circle-reverse 48s linear infinite;
+  }
+
+  .heart {
+    position: absolute;
+  }
+  .heart-pink {
+    left: 60%;
+    bottom: 64%;
+  }
+  .heart-blue {
+    left: 6%;
+    bottom: 16%;
+  }
+
+  .floating-char-group {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    width: 50%;
+    max-width: 100%;
+  }
+
+  .floating-char {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    flex: 1 1 0;
+  }
+</style>

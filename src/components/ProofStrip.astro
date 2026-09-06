@@ -1,15 +1,37 @@
 ---
+import FlagIcon from './icons/FlagIcon.astro';
+
+const languages = [
+  { name: 'English', flag: 'us' as const },
+  { name: 'Japanese', flag: 'jp' as const },
+  { name: 'Spanish', flag: 'es' as const },
+  { name: 'Portuguese', flag: 'pt' as const },
+];
 ---
 
 <section aria-labelledby="proof-strip-heading" class="proof">
-  <h2 id="proof-strip-heading" class="sr-only">Where senpai is live</h2>
+  <h2 id="proof-strip-heading" class="sr-only">Where Senpai is live?</h2>
   <div class="panel row">
-    <p class="body-large">Live in English, Japanese, Spanish, and Portuguese.</p>
+    <p class="body-large lead">Live in:</p>
+    <ul class="lang-list">
+      {
+        languages.map((lang) => (
+          <li class="lang-item">
+            <span class="lang-name">{lang.name}</span>
+            <span class="lang-chip">
+              <FlagIcon code={lang.flag} />
+            </span>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </section>
 
 <style>
   .proof {
+    position: relative;
+    z-index: 2;
     padding: 0 24px 24px;
     max-width: 1440px;
     margin: 0 auto;
@@ -17,6 +39,35 @@
 
   .row {
     padding: 24px;
+  }
+
+  .lead {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .lang-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px 28px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .lang-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-bottom: 3px solid var(--accent);
+    font-weight: 500;
+    background-color: #9a7f9c
+  }
+
+  .lang-chip {
+    display: inline-flex;
+    align-items: center;
   }
 
   @media (min-width: 900px) {

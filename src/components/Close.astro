@@ -6,16 +6,16 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
   <div class="panel panel--paper close-panel">
     <h2 id="close-heading" class="h2">Anime hits different together.</h2>
     <div class="actions">
-      <a href={APP_STORE_URL} class="store-badge">
-        <img src="/assets/images/appstore.png" alt="Download on the App Store" width={217} height={71} />
-      </a>
       <img
-        src="/assets/images/barcode.png"
+        src="/assets/images/senpai-qr-code.png"
         alt="QR code linking to the Senpai App Store listing"
         width={120}
         height={120}
         class="qr hide-below-900"
       />
+      <a href={APP_STORE_URL} class="store-badge">
+        <img src="/assets/images/appstore.png" alt="Download on the App Store" width={217} height={71} />
+      </a>
     </div>
   </div>
 </section>
@@ -34,10 +34,10 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
 
   .actions {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 24px;
     margin-top: 24px;
-    flex-wrap: wrap;
   }
 
   .store-badge img {

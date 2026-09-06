@@ -68,7 +68,8 @@ figcaption.subtitle {
 }
 
 .body-large {
-    margin: 1.2em 0;
+  margin: 1.2em 0;
+  line-height: 1.5;
 }
 
 .h2#avatars-heading {
@@ -81,19 +82,36 @@ figcaption.subtitle {
 
 blockquote {
   box-shadow: 0 5px 15px rgba(65,25,85,0.8),0 6px 6px rgba(65,25,85,0.96) !important;
+  margin: 3rem 0.5em !important
 }
 
 .panel--paper:hover {
   box-shadow: 0 5px 15px rgba(65, 25, 85, 0.14), 0 6px 6px rgba(65, 25, 85, 0.1);
 }
 
-footer nav li a {
+
+nav a {
   color: var(--light-paper) !important;
 }
 
-footer nav li a:hover {
+nav a:hover {
   color: var(--dark-paper) !important;
 }
+
+span.lang-chip { margin: 0 4px; }
+
+.copy-panel .link:hover,
+.copy-panel .link:focus {
+  color: var(--light-paper);
+}
+
+p.lead { color: aliceblue !important; }
+
+video.onboarding-video {
+  mix-blend-mode: luminosity !important;
+}
+
+img.qr { margin-left: 2vw; }
 
 /*Fonts*/
 @font-face {

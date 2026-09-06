@@ -1,4 +1,6 @@
 ---
+import FloatingCharacters from './FloatingCharacters.astro';
+
 const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fans/id6464066826';
 ---
 
@@ -34,6 +36,21 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
       <div class="phone-placeholder" aria-hidden="true">
         <div class="phone-bg-pink"></div>
         <div class="phone-bg-blue"></div>
+        <FloatingCharacters hideCharacters={true} />
+        <FloatingCharacters hideCharacters={true} class="floating-characters-secondary" />
+        <video
+          class="onboarding-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="/assets/images/senpai-onboarding-poster.jpg"
+          width="468"
+          height="906"
+        >
+          <source src="/assets/videos/senpai-onboarding-muted.webm" type="video/webm" />
+        </video>
       </div>
       <img
         class="break-character"
@@ -48,7 +65,6 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
 
 <style>
   .hero {
-    margin-bottom: 6px;
     padding: 24px 24px 24px 24px;
   }
 
@@ -81,13 +97,16 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
 
   .sub.body-large {
     max-width: 42ch;
-    padding: 1em 1em 1em 1.6em;
-    border-left: 4px #925a95 solid;
-    background: #a371a5;
-    color: #49354a;
+    padding: 20px 20px 20px 24px;
+    border-left: 4px solid var(--accent);
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.92);
     line-height: 1.7;
-    margin: 3em 4em 2em !important;
-    box-shadow: -8px 5px 15px rgba(65, 25, 85, 0.8), 0 6px 6px rgba(65, 25, 85, 0.96);
+    margin: 24px 0 0;
+    box-shadow:
+      0 16px 40px rgba(192, 38, 211, 0.22),
+      0 6px 16px rgba(59, 130, 246, 0.22);
     animation: quote-entrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
   }
 
@@ -101,6 +120,12 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
     display: block;
   }
 
+  /*
+    .phone-placeholder itself has no size of its own — it's position:absolute;
+    inset:0, so it always exactly fills whatever box .phone-panel establishes.
+    Making it responsive means giving .phone-panel real breakpoint-driven
+    sizing instead of one flat min-height used at every width.
+  */
   .phone-panel {
     position: relative;
     min-height: 360px;
@@ -138,12 +163,45 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
     animation: bg-circle-blue 24s linear infinite;
   }
 
+  .phone-placeholder :global(.floating-characters) {
+    z-index: 1;
+  }
+
+  /*
+    Second FloatingCharacters instance, mirroring the original site's
+    WifesRight treatment: same dot-circles/hearts styling as the :first-child
+    instance (untouched — nothing in FloatingCharacters.astro changes), just
+    shifted right as a single rigid unit via transform so it breaks off the
+    right edge of .phone-placeholder (clipped by its overflow:hidden) instead
+    of sitting exactly on top of the first instance. transform is applied
+    after layout, so it doesn't affect the internal dot-circle viewport-
+    centering calc()s at all — they still resolve correctly relative to this
+    wrapper's original (pre-transform) box; the whole already-correct result
+    just gets carried 65% of its own width to the right.
+  */
+  .phone-placeholder :global(.floating-characters-secondary) {
+    transform: translate(108%, -48%);
+  }
+
+  .onboarding-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55%;
+    max-width: 220px;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+  }
+
   .break-character {
     position: absolute;
     left: -24px;
-    bottom: -32px;
+    bottom: -44px;
     width: 140px;
     height: auto;
+    z-index: 1;
   }
 
   @media (min-width: 900px) {
@@ -165,12 +223,13 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
       max-width: 640px;
     }
     .phone-panel {
+      min-height: 480px;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
     .break-character {
       left: -48px;
-      bottom: -40px;
+      bottom: -58px;
       width: 200px;
     }
   }
@@ -180,6 +239,9 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
       max-width: 1600px;
       margin: 0 auto;
       padding-right: 40px;
+    }
+    .phone-panel {
+      min-height: 560px;
     }
   }
 </style>
