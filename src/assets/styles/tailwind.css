@@ -98,6 +98,14 @@ nav a:hover {
   color: var(--dark-paper) !important;
 }
 
+footer .legal-line a {
+  color: var(--light-paper) !important;
+}
+
+footer .legal-line a:hover {
+  color: #d15353 !important;
+}
+
 span.lang-chip { margin: 0 4px; }
 
 .copy-panel .link:hover,

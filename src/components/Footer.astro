@@ -23,7 +23,7 @@ const columns = [
   {
     heading: 'Build with us',
     links: [
-      { href: '/gengado', label: 'Gengado' },
+      { href: 'https://gengado.com', label: 'Gengado' },
       { href: '/studio', label: 'Senpai Studio' },
       { href: '/creators', label: 'Creators' },
     ],
@@ -58,11 +58,16 @@ const orgJsonLd = {
         <nav aria-label={col.heading}>
           <h2 class="col-heading caption2">{col.heading}</h2>
           <ul>
-            {col.links.map((link) => (
-              <li>
-                <a href={link.href}>{link.label}</a>
-              </li>
-            ))}
+            {col.links.map((link) => {
+              const isExternal = link.href.includes('//');
+              return (
+                <li>
+                  <a href={link.href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noopener noreferrer' : undefined}>
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       ))
@@ -71,14 +76,10 @@ const orgJsonLd = {
 
   <!-- TODO: language switcher (<select> or hreflang links per spec §6.11) — deferred to the i18n phase, no locale routes exist yet -->
   <div class="bottom">
-    <p class="caption2 legal-line">Makeshift Software Inc. © {year}</p>
+    <p class="caption2 legal-line">
+      <a href="https://makeshift.software" target="_blank"> Makeshift Software Inc </a>. © {year}</p>
+    </p>
 
-    <!--
-      TODO(founder): real YouTube/Instagram URLs. Currently omitted per
-      spec §1 defect 5 — the live site points these at bare
-      youtube.com/instagram.com, which isn't a real account link.
-      {{YOUTUBE_URL}}, {{INSTAGRAM_URL}}
-    -->
     <div class="social-icons">
       <a href="https://twitter.com/senpai_app" aria-label="Senpai on X">
         <img src="/assets/images/twitter.svg" alt="" width={32} height={32} aria-hidden="true" />

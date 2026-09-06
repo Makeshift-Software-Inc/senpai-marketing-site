@@ -11,11 +11,13 @@ import Events from '../components/Events.astro';
 import Close from '../components/Close.astro';
 import Footer from '../components/Footer.astro';
 
+// Title/description intentionally not set here — they're inherited from
+// config.json's metadata.title.default / metadata.description, which *is*
+// the homepage's copy by design (see spec §9). Duplicating it here just
+// gives it a second place to go stale (as happened: config.json was
+// updated to new copy and this hardcoded string kept overriding it).
 const metadata = {
-  title: 'Senpai — the anime app for matching, posting, and making anime',
   ignoreTitleTemplate: true,
-  description:
-    'Match with fans who watch what you watch, post to the feed, and make your own anime shorts. Free on iPhone.',
 };
 
 const softwareAppJsonLd = {
