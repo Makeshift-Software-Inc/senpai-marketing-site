@@ -61,6 +61,40 @@ figcaption.subtitle {
   box-shadow: 0 5px 15px rgba(65, 25, 85, 0.1), 0 6px 6px rgba(65, 25, 85, 0.06);
 }
 
+.panel--paper .h2 { color: aliceblue; }
+
+.copy-panel p.body-large {
+  padding: 0.3em;
+}
+
+.body-large {
+    margin: 1.2em 0;
+}
+
+.h2#avatars-heading {
+  border-bottom: 5px #b576b8 solid;
+  padding: 0.3em 0.5em;
+  margin-bottom: 0.7em;
+  background-color: #604a6b;
+  font-size: 3.2em;
+}
+
+blockquote {
+  box-shadow: 0 5px 15px rgba(65,25,85,0.8),0 6px 6px rgba(65,25,85,0.96) !important;
+}
+
+.panel--paper:hover {
+  box-shadow: 0 5px 15px rgba(65, 25, 85, 0.14), 0 6px 6px rgba(65, 25, 85, 0.1);
+}
+
+footer nav li a {
+  color: var(--light-paper) !important;
+}
+
+footer nav li a:hover {
+  color: var(--dark-paper) !important;
+}
+
 /*Fonts*/
 @font-face {
   font-family: Geomanist;

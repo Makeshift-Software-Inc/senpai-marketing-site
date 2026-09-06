@@ -6,10 +6,12 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
   <div class="hero-grid">
     <div class="panel copy-panel">
       <h1 id="hero-heading" class="h1">Your people are here.</h1>
-      
-      <p class="sub body-large">
-        Match, post, and make anime with fans who watch what you watch. Free on iPhone.
-      </p>
+
+      <div class="quote-container">
+        <blockquote class="sub body-large">
+          Match, post, and make anime with fans who watch what you watch. Free on iPhone.
+        </blockquote>
+      </div>
 
       <a href={APP_STORE_URL} class="store-badge">
         <img
@@ -62,10 +64,31 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
     padding: 40px 24px;
   }
 
-  .sub {
-    margin-top: 20px;
+  .quote-container {
+    padding: 0;
+  }
+
+  @keyframes quote-entrance {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.94);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .sub.body-large {
     max-width: 42ch;
-    color: rgba(255, 255, 255, 0.85);
+    padding: 1em 1em 1em 1.6em;
+    border-left: 4px #925a95 solid;
+    background: #a371a5;
+    color: #49354a;
+    line-height: 1.7;
+    margin: 3em 4em 2em !important;
+    box-shadow: -8px 5px 15px rgba(65, 25, 85, 0.8), 0 6px 6px rgba(65, 25, 85, 0.96);
+    animation: quote-entrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
   }
 
   .store-badge {
