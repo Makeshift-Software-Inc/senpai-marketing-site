@@ -2,6 +2,7 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fans/id6464066826';
+const IOS_MIN_VERSION = import.meta.env.IOS_MIN_VERSION ?? '14';
 
 const metadata = {
   title: 'Get Senpai',
@@ -34,8 +35,7 @@ const softwareAppJsonLd = {
           <img src="/assets/images/appstore.png" alt="Download on the App Store" width={217} height={71} />
         </a>
       </div>
-      <!-- TODO(founder): {{IOS_MIN_VERSION}} — confirm the minimum supported iOS version before publishing this. -->
-      <p class="caption2 requirements">Requires iOS {'{{IOS_MIN_VERSION}}'} or later.</p>
+      <p class="caption2 requirements">Requires iOS {IOS_MIN_VERSION} or later.</p>
     </div>
   </section>
 
