@@ -26,7 +26,10 @@
            license.
         No source exists in this repo; this panel is a placeholder only.
       -->
-      <div class="media-placeholder" aria-hidden="true"></div>
+      <div class="media-placeholder" aria-hidden="true">
+        <div class="media-bg-pink"></div>
+        <div class="media-bg-blue"></div>
+      </div>
     </figure>
   </div>
 </section>
@@ -57,8 +60,31 @@
   .media-placeholder {
     position: absolute;
     inset: 0;
+    overflow: hidden;
     background: linear-gradient(160deg, rgba(192, 38, 211, 0.16), rgba(59, 130, 246, 0.2));
     border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .media-bg-pink,
+  .media-bg-blue {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 420px;
+    transform: rotate(-38.088deg);
+    flex-shrink: 0;
+    border-radius: 500px;
+    filter: blur(60px);
+    --orbit-radius: 120px;
+  }
+  .media-bg-pink {
+    background: rgba(222, 11, 201, 0.3);
+    animation: bg-circle-pink 24s linear infinite;
+  }
+  .media-bg-blue {
+    background: rgba(18, 134, 240, 0.3);
+    animation: bg-circle-blue 24s linear infinite;
   }
 
   @media (min-width: 900px) {

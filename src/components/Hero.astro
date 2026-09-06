@@ -6,9 +6,11 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
   <div class="hero-grid">
     <div class="panel copy-panel">
       <h1 id="hero-heading" class="h1">Your people are here.</h1>
+      
       <p class="sub body-large">
         Match, post, and make anime with fans who watch what you watch. Free on iPhone.
       </p>
+
       <a href={APP_STORE_URL} class="store-badge">
         <img
           src="/assets/images/appstore.png"
@@ -27,7 +29,10 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
         substitute stock/mockup footage or another product's video here.
         Target: 6-10s vertical loop, audio stripped, served from Bunny Stream.
       -->
-      <div class="phone-placeholder" aria-hidden="true"></div>
+      <div class="phone-placeholder" aria-hidden="true">
+        <div class="phone-bg-pink"></div>
+        <div class="phone-bg-blue"></div>
+      </div>
       <img
         class="break-character"
         src="/assets/images/hero-character-right-upper-2.png"
@@ -41,6 +46,7 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
 
 <style>
   .hero {
+    margin-bottom: 6px;
     padding: 24px 24px 24px 24px;
   }
 
@@ -82,8 +88,31 @@ const APP_STORE_URL = 'https://apps.apple.com/us/app/senpai-dating-for-anime-fan
   .phone-placeholder {
     position: absolute;
     inset: 0;
+    overflow: hidden;
     background: linear-gradient(160deg, rgba(59, 130, 246, 0.18), rgba(192, 38, 211, 0.18));
     border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .phone-bg-pink,
+  .phone-bg-blue {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 420px;
+    transform: rotate(-38.088deg);
+    flex-shrink: 0;
+    border-radius: 500px;
+    filter: blur(60px);
+    --orbit-radius: 120px;
+  }
+  .phone-bg-pink {
+    background: rgba(222, 11, 201, 0.3);
+    animation: bg-circle-pink 24s linear infinite;
+  }
+  .phone-bg-blue {
+    background: rgba(18, 134, 240, 0.3);
+    animation: bg-circle-blue 24s linear infinite;
   }
 
   .break-character {

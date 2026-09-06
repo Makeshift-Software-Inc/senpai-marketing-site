@@ -24,7 +24,6 @@
   font-size: 1rem !important;
   line-height: 1.5 !important;
   padding: 0.4em 0 !important;
-  
 }
 
 .line-panel .caption1 { 
@@ -38,12 +37,28 @@ figure figcaption.caption1 {
   padding: 1.5rem;
 }
 
+figcaption.subtitle {
+  padding: 2rem !important;
+  background: #604a6b;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.14), 0 6px 6px rgba(0, 0, 0, 0.19);
+}
+
 .error {
   color: red;
 }
 
 .success {
   color: white;
+}
+
+.panel {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.14);
+}
+
+.panel:hover {
+  box-shadow: 0 5px 15px rgba(65, 25, 85, 0.1), 0 6px 6px rgba(65, 25, 85, 0.06);
 }
 
 /*Fonts*/
@@ -97,18 +112,18 @@ figure figcaption.caption1 {
 
 @keyframes bg-circle-pink {
   0% {
-    transform: rotate(0deg) translate(500px) rotate(0deg);
+    transform: rotate(0deg) translate(var(--orbit-radius, 500px)) rotate(0deg);
   }
   100% {
-    transform: rotate(-360deg) translate(500px) rotate(-360deg);
+    transform: rotate(-360deg) translate(var(--orbit-radius, 500px)) rotate(-360deg);
   }
 }
 @keyframes bg-circle-blue {
   0% {
-    transform: rotate(180deg) translate(500px) rotate(-180deg);
+    transform: rotate(180deg) translate(var(--orbit-radius, 500px)) rotate(-180deg);
   }
   100% {
-    transform: rotate(-180deg) translate(500px) rotate(180deg);
+    transform: rotate(-180deg) translate(var(--orbit-radius, 500px)) rotate(180deg);
   }
 }
 @keyframes heart-pink {
