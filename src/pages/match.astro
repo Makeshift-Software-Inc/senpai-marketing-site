@@ -21,25 +21,52 @@ const metadata = {
 
     <div class="grid">
       <div class="panel">
-        <h2 class="title1">Chat first, reveal later</h2>
+        <h2 class="title1">
+          Chat first, reveal later
+        </h2>
+
         <p class="caption1">
-          Every match starts as a video call between avatars. You decide when — or if — to show your face.
+          Every match starts as a video call between avatars.
+        </p>
+
+        <p class="caption1">
+          <b>Chat behind the avatar. Reveal when it's mutual.</b>
         </p>
       </div>
+
       <div class="panel">
-        <h2 class="title1">Only real users, verified</h2>
-        <p class="caption1">Every account goes through verification before it can match, so who you meet is real.</p>
-      </div>
-      <div class="panel">
-        <h2 class="title1">Matched on taste, not just looks</h2>
+        <h2 class="title1">
+          Only real users, verified
+        </h2>
+        
         <p class="caption1">
-          Pick your top ten anime when you sign up. Senpai matches you with people who watch what you watch before
+          Every account goes through verification before it can match, so who you meet is real.
+        </p>
+      </div>
+      
+      <div class="panel">
+        <h2 class="title1">
+          Matched on <strong>taste</strong>, not <i>just</i> looks.
+        </h2>
+
+        <p class="caption1">
+          Pick your top ten anime when you sign up.
+        </p>
+
+        <p class="caption1">
+          <strong>Senpai</strong> matches you with people who watch what you watch before
           anything else.
         </p>
       </div>
+      
       <div class="panel">
-        <h2 class="title1">Avatar-powered live video</h2>
-        <p class="caption1">Your avatar carries your expressions into the call in real time — no face required.</p>
+        <h2 class="title1">
+          Avatar-powered Live Video
+        </h2>
+
+        <p class="caption1">
+          Your reactions, tracked live and mirrored on your avatar. No face on screen, ever.
+        </p>
       </div>
     </div>
   </section>
@@ -63,11 +90,34 @@ const metadata = {
     margin-top: 16px;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 36px !important;
+    margin: 4rem;
   }
+
   .grid .panel {
     padding: 24px;
   }
+
+  .grid .panel .caption1 strong {
+    font-weight: 900;
+    letter-spacing: 0.1px;
+  }
+
+  .panel .title1 {
+    border-bottom: 3px #b576b8 solid;
+    width: fit-content;
+    padding-bottom: 6px;
+    margin-bottom: 1.2rem;
+  }
+
+  .panel .title1 strong { color: #f6a2ca; }
+
+  .panel .caption1 { 
+    font-weight: 100;
+    letter-spacing: 0px;
+    font-size: 1.2em !important;
+ }
+
   @media (min-width: 900px) {
     .grid {
       grid-template-columns: repeat(2, 1fr);
