@@ -45,13 +45,13 @@ if (Astro.request.method === 'POST') {
 
     <div class="grid">
       <div class="panel">
-        <p class="caption1">Live floor maps show where your crew is.</p>
+        <blockquote class="sub body-large">Live floor maps show where your crew is.</blockquote>
       </div>
       <div class="panel">
-        <p class="caption1">Multi-floor directions from panels to exhibit halls to food.</p>
+        <blockquote class="sub body-large">Multi-floor directions from panels to exhibit halls to food.</blockquote>
       </div>
       <div class="panel">
-        <p class="caption1">Seat maps and queue times, updated live.</p>
+        <blockquote class="sub body-large">Seat maps and queue times, updated live.</blockquote>
       </div>
     </div>
   </section>
@@ -147,9 +147,45 @@ if (Astro.request.method === 'POST') {
     grid-template-columns: 1fr;
     gap: 16px;
   }
+  
   .grid .panel {
     padding: 20px;
   }
+
+  .sub.body-large {
+    max-width: 42ch;
+    padding: 20px 20px 20px 24px;
+    border-left: 4px solid var(--accent);
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.7;
+    box-shadow:
+      0 16px 40px rgba(192, 38, 211, 0.22),
+      0 6px 16px rgba(59, 130, 246, 0.22);
+    animation: quote-entrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  section.page-wrap {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  section.page-wrap p.body-large {
+    width: 100%;
+    text-align: center;
+    max-width: inherit;
+  }
+
+  
+  .panel .h1 {
+    border-bottom: 5px #b576b8 solid;
+    width: fit-content;
+    margin-bottom: 0.5em;
+    padding-bottom: 3px;
+  }
+
   .divider {
     border: none;
     border-top: 1px solid rgba(255, 255, 255, 0.08);

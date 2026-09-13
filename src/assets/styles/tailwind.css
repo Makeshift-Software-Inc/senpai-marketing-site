@@ -72,6 +72,21 @@ figcaption.subtitle {
   line-height: 1.5;
 }
 
+.title2 {
+  letter-spacing: 0.5px;
+}
+
+.steps .title2 {
+  display: inline-flex !important;
+  margin: 10px !important;
+  font-weight: 900 !important;
+  width: fit-content !important;
+}
+
+.step-panel .caption1 {
+  padding: 1.3em 0.1em 1em !important;
+}
+
 .h2#avatars-heading {
   border-bottom: 5px #b576b8 solid;
   padding: 0.3em 0.5em;
